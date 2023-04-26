@@ -1,7 +1,6 @@
 class Solution {
    public int maxSumSubmatrix(int[][] matrix, int k) {
-    if (matrix == null || matrix.length == 0 || matrix[0].length == 0)
-        return 0;
+   
     int rows = matrix.length, cols = matrix[0].length;
     int[][] areas = new int[rows][cols];
     for (int r = 0; r < rows; r++) {
