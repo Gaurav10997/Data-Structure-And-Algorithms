@@ -6,8 +6,8 @@ class Solution {
         map.put(0,1);
         for(int i = 0; i< nums.length ; i++){
             prefixsum += nums[i];
-            int rem = prefixsum%k>=0?prefixsum%k:(prefixsum%k+k) ; 
-            System.out.println(rem);
+            int rem = (prefixsum%k+k)%k ; 
+           
             if(map.containsKey(rem)){
                 count+=map.get(rem);
             }
