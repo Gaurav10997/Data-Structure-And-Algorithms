@@ -4,6 +4,7 @@ class Solution {
         List<String> list = new ArrayList<>();
         if(digits.equals(""))return list;
         recursion(arr,list,digits,"");
+        System.out.println(digits);
         return list;
     }
     public void  recursion(String [] arr,List<String> list , String up,String p){
