@@ -53,17 +53,14 @@ class DriverClass
 
 
 //User function Template for Java
-class Pair {
-    int wt ; 
-    int edge ; 
-
-    public Pair(int wt , int edge){
-        this.wt = wt ; 
-        this.edge = edge ; 
+class Pair{
+    int wt; 
+    int curr; 
+    
+   Pair(int wt , int curr){
+        this.wt= wt ;
+        this.curr=curr;
     }
-    
-    
-    
 }
 
 class Solution
@@ -73,29 +70,29 @@ class Solution
     static int[] dijkstra(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj, int S)
     {
         // Write your code here
-        int [] ans = new int [V]; 
-        Arrays.fill(ans,Integer.MAX_VALUE);
+        int distance [] = new int [V];
         PriorityQueue<Pair> pq = new PriorityQueue<>((o1,o2)->o1.wt-o2.wt);
-        ans[S]=0;
+        
         pq.add(new Pair(0,S));
+        Arrays.fill(distance,Integer.MAX_VALUE);
+        distance[S]=0;
         
         while(!pq.isEmpty()){
-            Pair p =  pq.remove();
-            int currwt = p.wt;
-            int currNode = p.edge;
+            Pair p = pq.remove();
+            int wt = p.wt ; 
+            int curr= p.curr;
             
-            for(var list :adj.get(currNode)){
-                int nbr = list.get(0);
-                int nbrwt = list.get(1);
-                if(currwt+nbrwt<ans[nbr]){
-                    ans[nbr]=currwt+nbrwt;
-                    pq.add(new Pair(currwt+nbrwt,nbr));
+            for(var nbr : adj.get(curr)){
+                int nbra = nbr.get(0);
+                int nbrawt = nbr.get(1);
+                
+                if(wt+nbrawt<distance[nbra]){
+                    distance[nbra]=wt+nbrawt;
+                    pq.add(new Pair(wt+nbrawt,nbra));
                 }
             }
         }
-        
-        return ans;
-        
+        return distance;
     }
 }
 
