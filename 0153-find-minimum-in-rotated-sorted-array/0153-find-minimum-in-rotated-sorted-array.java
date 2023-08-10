@@ -1,23 +1,30 @@
 class Solution {
-    public int findMin(int[] num) {
-        if (num == null || num.length == 0) {
-            return 0;
-        }
-        if (num.length == 1) {
-            return num[0];
-        }
-        int start = 0, end = num.length - 1;
-        while (start < end) {
-            int mid = (start + end) / 2;
-            if (mid > 0 && num[mid] < num[mid - 1]) {
-                return num[mid];
+    public int findMin(int[] nums) {
+       int l = 0 , r = nums.length-1; 
+       int ans = Integer.MAX_VALUE;
+        while(l<=r){
+            int mid = l+(r-l)/2;
+            //left sorted array 
+            if(nums[l]<=nums[mid]){
+                // if(target<nums[l] || target>nums[mid]){
+                //     l=mid+1;
+                // }else{
+                //     r=mid-1;
+                // }
+                ans=Math.min(ans,nums[l]);
+                 l=mid+1;
             }
-            if (num[start] <= num[mid] && num[mid] > num[end]) {
-                start = mid + 1;
-            } else {
-                end = mid - 1;
+            else{
+//                   if(target<nums[mid] || target>nums[r]){
+//                        r=mid-1;
+                  
+//                 }else{
+//                      l=mid+1;
+//                 }
+                  ans=Math.min(ans,nums[mid]);
+                 r=mid-1;
             }
         }
-        return num[start];
+        return ans;
     }
 }
