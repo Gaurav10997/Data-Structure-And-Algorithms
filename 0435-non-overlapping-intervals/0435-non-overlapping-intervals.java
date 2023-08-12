@@ -1,27 +1,22 @@
-public class Solution {
-
+class Solution {
     public int eraseOverlapIntervals(int[][] intervals) {
-        int intervalsRemoved = 0;
-
-        Arrays.sort(intervals,(arr1, arr2) -> Integer.compare(arr1[0], arr2[0]));
-
-        int[] intervalFirst = intervals[0];
-
-        for (int i = 1; i < intervals.length; i++) {
-            if (intervals[i][0] < intervalFirst[1]) {
-                intervalsRemoved++;
+        Arrays.sort(intervals,(a,b)->a[0]-b[0]);
+        int ans = 0;
+        int [] first = intervals[0];
+        
+        for(int i = 1 ; i< intervals.length ; i++){
+            if(first[1]>intervals[i][0]){
                 
-                // determine which interval to remove
-                //remove the interval that ends last
-                if (intervalFirst[1] > intervals[i][1]) {
-                    intervalFirst = intervals[i];
+                ans++;
+                
+                if(first[1]>=intervals[i][1]){
+                    first=intervals[i];
                 }
-            } else {
-                intervalFirst = intervals[i];
+            }
+            else{
+                first=intervals[i];
             }
         }
-        return intervalsRemoved;
+        return ans;
     }
-
-  
 }
