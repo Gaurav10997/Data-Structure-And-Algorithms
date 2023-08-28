@@ -1,11 +1,9 @@
 class MyStack {
-    Stack<Integer> stack=new Stack<>();
-    Queue<Integer> q1;
-    Queue<Integer> q2;
-
+    Queue  <Integer> q1 ;
+    Queue <Integer> q2;
     public MyStack() {
-        q1=new LinkedList<>();
-        q2=new LinkedList<>();
+        q1 = new ArrayDeque<>();
+        q2 = new ArrayDeque<>();
     }
     
     public void push(int x) {
@@ -13,32 +11,32 @@ class MyStack {
     }
     
     public int pop() {
-        while(q1.size()>1){
+          System.out.println(q1);
+       int ans = -1;
+       while(!q1.isEmpty()){
+            ans=q1.peek();
             q2.add(q1.remove());
-        }
-        int pop=q1.remove();
-        Queue<Integer> temp=q1;
-        q1=q2;
-        q2=temp;
-        return pop;
+       }
+       while(q2.size()>1){
+           q1.add(q2.remove());
+       }
+       if(!q2.isEmpty())q2.remove();
+        System.out.println(q1);
+       return ans;
     }
     
     public int top() {
-        while(q1.size()>1){
+       int ans = -1;
+       while(!q1.isEmpty()){
+            ans=q1.peek();
             q2.add(q1.remove());
-        }
-        int top=q1.peek();
-        q2.add(q1.remove());
-        Queue<Integer> temp=q1;
-        q1=q2;
-        q2=temp;
-        return top;
-
+       }
+       while(!q2.isEmpty())q1.add(q2.remove());
+       return ans;
     }
     
     public boolean empty() {
-        if(q1.isEmpty()) return true;
-        return false;
+       return q1.isEmpty();
     }
 }
 
