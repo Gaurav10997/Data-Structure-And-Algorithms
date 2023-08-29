@@ -10,28 +10,28 @@
  */
 class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
-        int count = 0 ; 
+        int count = 0 ;
         ListNode curr = head ; 
-        while(count!=k && curr!=null){
-           curr=curr.next;
-           count++;
-        }
         
+        while(curr!=null && count!=k){
+            curr=curr.next;
+            count++;
+        }
         if(count==k){
-            ListNode prev = reverseKGroup(curr,k);
-            head = reverseHelper(head,prev,k);
+          ListNode prev = reverseKGroup(curr,k);
+          head = reverse(prev,head,k);
         }
         
-        return head ; 
+        return head;
+        
     }
-    
-     public ListNode reverseHelper(ListNode head ,ListNode prev, int count){
-        while (count-- > 0) { 
-                ListNode next = head.next; 
-                head.next = prev; 
-                prev = head; 
-                head = next;
-            }
-            return prev;
+    public ListNode reverse(ListNode prev , ListNode curr , int k){
+        while(k-->0){
+            ListNode next = curr.next;
+            curr.next=prev ;
+            prev=curr;
+            curr=next;
+        }
+        return prev;
     }
 }
