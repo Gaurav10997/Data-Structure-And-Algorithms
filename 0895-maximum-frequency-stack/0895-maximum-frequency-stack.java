@@ -11,7 +11,7 @@ class FreqStack {
         map.put(val,map.getOrDefault(val,0)+1);
         int v = map.get(val);
         
-        if(v-1>=list.size()){
+        if(v-1==list.size()){
             list.add(new Stack<Integer>());
         }
         
